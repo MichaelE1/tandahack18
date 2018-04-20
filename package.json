@@ -1,0 +1,24 @@
+{
+  "name": "tandahack18",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelE1/tandahack18.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelE1/tandahack18/issues"
+  },
+  "homepage": "https://github.com/MichaelE1/tandahack18#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
+  }
+}
