@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const Zomato = require('zomato.js');
 const zomato = new Zomato('06ee630b8e99f41cda6b1db3b9b63cd9');
 var cors = require('cors');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
 
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
@@ -22,6 +25,7 @@ app.get('/', (req, res) => {
   res.send("Hello Chad");
 });
 
+// restaurant information
 app.get('/food', (req, res) => {
   zomato
   .search({
@@ -38,6 +42,17 @@ app.get('/food', (req, res) => {
   .catch(function(err) {
     console.error(err);
   });
+});
+
+// vote
+app.post('/vote', (req, res) => {
+  const data = req.body;
+  if (req.body) {
+    console.log(data);
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 
