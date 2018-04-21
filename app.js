@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const Zomato = require('zomato.js');
+const zomato = new Zomato('06ee630b8e99f41cda6b1db3b9b63cd9');
 
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
@@ -16,6 +18,25 @@ mongoose.connection.on('error', (err) => {
 app.get('/', (req, res) => {
   res.send("Hello Chad");
 });
+
+app.get('/food', (req, res) => {
+  zomato
+  .search({
+    q: '',
+    count: 2,
+    lat: -27.458201,
+    lon: 153.034288,
+    radius: 1000,
+    sort: 'real_distance'
+  })
+  .then(function(data) {
+    res.json(data);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+});
+
 
 // start and run server on port 3000
 const server = app.listen(3000, () => {
