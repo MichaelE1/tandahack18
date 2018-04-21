@@ -20,6 +20,10 @@ mongoose.connection.on('error', (err) => {
 
 app.use(cors());
 
+// import db model
+require('./models/Vote');
+const Vote = mongoose.model('Vote');
+
 // index route
 app.get('/', (req, res) => {
   res.send("Hello Chad");
@@ -45,10 +49,11 @@ app.get('/food', (req, res) => {
 });
 
 // vote
-app.post('/vote', (req, res) => {
+app.post('/vote', async (req, res) => {
   const data = req.body;
   if (req.body) {
     console.log(data);
+    await Vote.findOneAndUpdate({name: req.body.name}, { $inc: {tally: 1}}, {upsert: true}).exec();
     res.sendStatus(200);
   } else {
     res.sendStatus(400);
@@ -57,6 +62,6 @@ app.post('/vote', (req, res) => {
 
 
 // start and run server on port 3000
-const server = app.listen(80, () => {
-  console.log('Server started on port 80');
+const server = app.listen(3000, () => {
+  console.log('Server started on port 3000');
 });
