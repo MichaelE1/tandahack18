@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Zomato = require('zomato.js');
 const zomato = new Zomato('06ee630b8e99f41cda6b1db3b9b63cd9');
+var cors = require('cors');
 
 // import environmental variables from variables.env file
 require('dotenv').config({ path: 'variables.env' });
@@ -13,6 +14,8 @@ mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
+
+app.use(cors());
 
 // index route
 app.get('/', (req, res) => {
@@ -39,6 +42,6 @@ app.get('/food', (req, res) => {
 
 
 // start and run server on port 3000
-const server = app.listen(3000, () => {
-  console.log('Server started on port 3000');
+const server = app.listen(80, () => {
+  console.log('Server started on port 80');
 });
