@@ -26,7 +26,7 @@ app.get('/food', (req, res) => {
   zomato
   .search({
     q: '',
-    count: 2,
+    count: 9,
     lat: -27.458201,
     lon: 153.034288,
     radius: 1000,
